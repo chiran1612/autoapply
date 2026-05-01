@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import { UploadCloud, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 const ResumeUpload = ({ onUploadSuccess }) => {
   const [uploading, setUploading] = useState(false);
@@ -17,7 +18,7 @@ const ResumeUpload = ({ onUploadSuccess }) => {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/resume/upload', formData, {
+      const response = await axios.post('http://localhost:8080/api/resume/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -43,50 +44,55 @@ const ResumeUpload = ({ onUploadSuccess }) => {
     <div className="w-full max-w-2xl mx-auto">
       <div
         {...getRootProps()}
-        className={`glass-morphism p-12 text-center cursor-pointer transition-all duration-300 ${
-          isDragActive ? 'border-primary-500 scale-105 shadow-2xl' : 'border-slate-700 hover:border-primary-400 hover:bg-white/5'
+        className={`glass-panel p-12 text-center cursor-pointer transition-all duration-300 group ${
+          isDragActive ? 'border-primary-500 scale-[1.02] bg-primary-500/5' : 'hover:border-primary-500/50 hover:bg-white/2'
         }`}
       >
         <input {...getInputProps()} />
-        <div className="flex flex-col items-center gap-4">
-          <div className="p-4 rounded-full bg-primary-500/10 text-primary-400">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-            </svg>
+        <div className="flex flex-col items-center gap-6">
+          <div className={`p-5 rounded-2xl bg-primary-600/10 text-primary-400 group-hover:scale-110 transition-transform ${uploading ? 'animate-pulse' : ''}`}>
+            {uploading ? <Loader2 size={40} className="animate-spin" /> : <UploadCloud size={40} />}
           </div>
+          
           <div>
-            <h3 className="text-xl font-semibold mb-2">
-              {isDragActive ? 'Drop your resume here' : 'Upload your resume'}
+            <h3 className="text-2xl font-bold mb-2">
+              {isDragActive ? 'Release to upload' : 'Drop your resume here'}
             </h3>
-            <p className="text-slate-400">
-              Drag & drop your PDF or DOCX file here, or click to browse
+            <p className="text-slate-400 max-w-sm mx-auto">
+              Drag & drop your PDF or DOCX file, or click to browse. We'll analyze it with AI instantly.
             </p>
           </div>
+
           {uploading && (
-            <div className="mt-4 w-full flex flex-col items-center">
-              <div className="w-48 h-2 bg-slate-800 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 animate-loading-bar" style={{width: '60%'}}></div>
+            <div className="w-full max-w-xs space-y-3">
+              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full bg-primary-500 w-[60%] rounded-full animate-pulse"></div>
               </div>
-              <p className="text-sm mt-2 text-primary-400">Analyzing your profile with AI...</p>
+              <p className="text-xs font-bold text-primary-400 uppercase tracking-widest">Analyzing with AI...</p>
             </div>
           )}
+
           {error && (
-            <p className="mt-4 text-sm text-red-400 bg-red-400/10 px-4 py-2 rounded-lg">{error}</p>
+            <div className="flex items-center gap-2 px-4 py-2 bg-red-400/10 text-red-400 rounded-lg text-sm font-medium">
+              <AlertCircle size={16} />
+              {error}
+            </div>
           )}
         </div>
       </div>
-      <div className="mt-6 flex justify-center gap-6 text-xs text-slate-500">
+      
+      <div className="mt-8 flex justify-center gap-8 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-green-500"></span>
-          AI Powered Analysis
+          <CheckCircle2 size={14} className="text-primary-500" />
+          AI Analysis
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-          Secure & Private
+          <CheckCircle2 size={14} className="text-primary-500" />
+          ATS Optimized
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-          Instant Profile Generation
+          <CheckCircle2 size={14} className="text-primary-500" />
+          Secure Encryption
         </div>
       </div>
     </div>

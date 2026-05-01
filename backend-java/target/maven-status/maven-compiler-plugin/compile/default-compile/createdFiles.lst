@@ -1,0 +1,17 @@
+com\autoapply\app\AutoApplyApplication.class
+com\autoapply\app\config\SecurityConfig.class
+com\autoapply\app\service\ApplicationService.class
+com\autoapply\app\model\Application.class
+com\autoapply\app\model\Application$ApplicationBuilder.class
+com\autoapply\app\controller\DashboardController.class
+com\autoapply\app\controller\HealthController.class
+com\autoapply\app\controller\ApplicationController.class
+com\autoapply\app\service\PythonService$1.class
+com\autoapply\app\controller\LoopController.class
+com\autoapply\app\model\Loop$LoopBuilder.class
+com\autoapply\app\model\Loop.class
+com\autoapply\app\repository\LoopRepository.class
+com\autoapply\app\service\LoopService.class
+com\autoapply\app\controller\ResumeController.class
+com\autoapply\app\repository\ApplicationRepository.class
+com\autoapply\app\service\PythonService.class
