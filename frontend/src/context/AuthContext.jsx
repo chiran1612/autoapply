@@ -11,6 +11,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Check active sessions and sets the user
     const checkUser = async () => {
+      if (import.meta.env.VITE_AUDIT_MODE === 'true') {
+        setUser({ id: 'test-user-id', email: 'audit-user@example.com' });
+        setSession({ access_token: 'mock-token' });
+        setLoading(false);
+        return;
+      }
       const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
       setUser(session?.user ?? null);
@@ -29,7 +35,14 @@ export const AuthProvider = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const login = (email, password) => supabase.auth.signInWithPassword({ email, password });
+  const login = (email, password) => {
+    if (import.meta.env.VITE_AUDIT_MODE === 'true') {
+      setUser({ id: 'test-user-id', email: 'audit-user@example.com' });
+      setSession({ access_token: 'mock-token' });
+      return Promise.resolve({ data: { user: { id: 'test-user-id' } }, error: null });
+    }
+    return supabase.auth.signInWithPassword({ email, password });
+  };
   const logout = () => supabase.auth.signOut();
   const signup = (email, password) => supabase.auth.signUp({ email, password });
 
