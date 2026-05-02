@@ -29,7 +29,7 @@ const DashboardLayout = () => {
             
             <div className="flex items-center gap-3 cursor-pointer group">
               <div className="text-right">
-                <p className="text-sm font-semibold text-white group-hover:text-primary-400 transition-colors">Chiranjeev</p>
+                <p className="text-sm font-bold text-white group-hover:text-primary-400 transition-colors">{session?.user?.user_metadata?.full_name || 'User'}</p>
                 <p className="text-[10px] text-slate-500 font-medium">Developer Account</p>
               </div>
               <div className="w-10 h-10 rounded-xl bg-surface border border-white/10 flex items-center justify-center text-slate-300 group-hover:border-primary-500 transition-all overflow-hidden">

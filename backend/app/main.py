@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routers import resume, jobs, gmail
+from app.routers import resume, jobs, gmail, dashboard
 
 app = FastAPI(title=settings.APP_NAME)
 
@@ -17,6 +17,7 @@ app.add_middleware(
 app.include_router(resume.router)
 app.include_router(jobs.router)
 app.include_router(gmail.router)
+app.include_router(dashboard.router)
 
 @app.get("/")
 async def root():

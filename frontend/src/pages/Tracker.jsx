@@ -14,7 +14,7 @@ const Tracker = () => {
         const token = session?.access_token;
         if (!token) return;
 
-        const response = await axios.get('http://localhost:8080/api/applications', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/applications`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setApplications(response.data);
@@ -31,7 +31,7 @@ const Tracker = () => {
   const handleApply = async (jobUrl) => {
     try {
       const token = session?.access_token;
-      const response = await axios.post('http://localhost:8080/api/applications/apply', 
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/applications/apply`, 
         { jobUrl },
         { headers: { Authorization: `Bearer ${token}` }}
       );

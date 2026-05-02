@@ -38,7 +38,7 @@ const Settings = () => {
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Full Name</label>
                 <input 
                   type="text" 
-                  defaultValue="Chiranjeev" 
+                  placeholder="Full Name" 
                   className="w-full bg-surface border border-white/5 rounded-xl px-4 py-3 text-sm focus:border-primary-500 outline-none transition-colors"
                 />
               </div>
@@ -46,7 +46,7 @@ const Settings = () => {
                 <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Email Address</label>
                 <input 
                   type="email" 
-                  defaultValue="chiranjeev@example.com" 
+                  placeholder="Email Address" 
                   className="w-full bg-surface border border-white/5 rounded-xl px-4 py-3 text-sm focus:border-primary-500 outline-none transition-colors"
                 />
               </div>

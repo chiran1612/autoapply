@@ -15,8 +15,8 @@ const Loops = () => {
       const token = session?.access_token;
       if (!token) return;
 
-      const response = await axios.get('http://localhost:8080/api/loops', {
-        headers: { Authorization: `Bearer ${token}` }
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/loops`, {
+        headers: { Authorization: `Bearer ${session?.access_token}` }
       });
       setLoops(response.data);
     } catch (err) {
@@ -34,7 +34,7 @@ const Loops = () => {
     if (!window.confirm('Are you sure you want to delete this loop?')) return;
     try {
       const token = session?.access_token;
-      await axios.delete(`http://localhost:8080/api/loops/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/loops/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchLoops();

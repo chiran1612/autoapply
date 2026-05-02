@@ -27,7 +27,7 @@ const Dashboard = () => {
         const token = session?.access_token;
         if (!token) return;
 
-        const response = await axios.get('http://localhost:8080/api/dashboard/stats', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/dashboard/stats`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -57,7 +57,7 @@ const Dashboard = () => {
     >
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back, {session?.user?.user_metadata?.full_name || 'Chiranjeev'}!</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Welcome back, {session?.user?.user_metadata?.full_name || 'User'}!</h1>
           <p className="text-slate-400">Here is what happened with your job search today.</p>
         </div>
         <motion.button 

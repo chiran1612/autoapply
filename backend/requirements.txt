@@ -6,7 +6,7 @@ pydantic-settings
 python-multipart
 pdfplumber
 python-docx
-google-generativeai
+google-genai
 playwright
 celery
 redis
