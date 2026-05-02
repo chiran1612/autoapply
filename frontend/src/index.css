@@ -79,3 +79,33 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }
+
+.settings-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.settings-input:focus {
+  border-color: var(--color-primary-500);
+  background: var(--color-surface-hover);
+}
+
+.premium-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-800) 100%);
+  border-radius: 0.75rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.2);
+}
+
+.premium-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.3);
+}

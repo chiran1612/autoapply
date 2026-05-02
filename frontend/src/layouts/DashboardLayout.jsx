@@ -2,8 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { Bell, Search, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const DashboardLayout = () => {
+  const { session } = useAuth();
   return (
     <div className="dashboard-layout">
       <Sidebar />

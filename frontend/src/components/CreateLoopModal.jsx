@@ -21,7 +21,10 @@ const CreateLoopModal = ({ isOpen, onClose, onSuccess }) => {
     try {
       const token = session?.access_token;
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/loops`, formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/loops`, {
+        ...formData,
+        user_id: user?.id || 'audit-tester'
+      }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -30,7 +33,7 @@ const CreateLoopModal = ({ isOpen, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      alert('Failed to create loop. Make sure your Spring Boot backend is running!');
+      alert('Failed to create loop. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
